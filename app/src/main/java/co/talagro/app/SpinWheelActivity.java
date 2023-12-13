@@ -1,13 +1,9 @@
 package co.talagro.app;
 
-import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bluehomestudio.luckywheel.LuckyWheel;
@@ -25,7 +21,7 @@ public class SpinWheelActivity extends AppCompatActivity {
     int min = 1;
     int selectedTarget;
 
-    private static String[] rewards = {
+    private static final String[] rewards = {
             "$100 Limit increase",
             "$100 Airtime balance",
             "$100 off on next loan",

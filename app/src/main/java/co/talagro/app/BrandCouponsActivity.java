@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import java.security.SecureRandom;
-import java.util.UUID;
 
 public class BrandCouponsActivity extends AppCompatActivity {
 
@@ -30,9 +29,6 @@ public class BrandCouponsActivity extends AppCompatActivity {
         CardView nikeCardView = findViewById(R.id.puregold_card);
         CardView walmartCardView = findViewById(R.id.walmart_card);
 
-//        createTextForAmazon();
-//        createTextForNike();
-//        createTextForWalmart();
         redeemCard(amazonCardView);
         redeemCard(nikeCardView);
         redeemCard(walmartCardView);
@@ -49,7 +45,7 @@ public class BrandCouponsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!isCardClicked) {
                     String s = generateRandomString();
-                    CustomDialog.showDialog(BrandCouponsActivity.this, "Congrats, Here is your Code! " + s);
+                    CustomDialog.showDialog(BrandCouponsActivity.this, "Congrats, here is your code! " + s);
                     //showCardRedeems();
                     //setResult();
                 }// Function to display card redeems or any other action
@@ -58,21 +54,21 @@ public class BrandCouponsActivity extends AppCompatActivity {
     }
 
     private void createTextForAmazon() {
-        TextView brandCouponText = findViewById(R.id.amazonCouponDescriptionTextView);
+        TextView brandCouponText = findViewById(R.id.amazon_coupon_description_tv);
         String htmlText = "<b>Amazon</b><br/><span>15% Off</span><br/><span>On purchase of $199 and more</span>";
         brandCouponText.setText(Html.fromHtml(htmlText));
 
     }
 
     private void createTextForWalmart() {
-        TextView brandCouponText = findViewById(R.id.amazonCouponDescriptionTextView);
+        TextView brandCouponText = findViewById(R.id.amazon_coupon_description_tv);
         String htmlText = "<b>First line in bold</b><br/><small>Second line in smaller font</small>";
         brandCouponText.setText(Html.fromHtml(htmlText));
 
     }
 
     private void createTextForNike() {
-        TextView brandCouponText = findViewById(R.id.amazonCouponDescriptionTextView);
+        TextView brandCouponText = findViewById(R.id.amazon_coupon_description_tv);
         String htmlText = "<b>First line in bold</b><br/><small>Second line in smaller font</small>";
         brandCouponText.setText(Html.fromHtml(htmlText));
     }

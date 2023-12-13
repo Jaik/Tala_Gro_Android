@@ -1,4 +1,4 @@
-<!-- brand_coupon_card.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,31 +10,39 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="14dp">
+        android:padding="12dp">
 
-        <!-- Image on the left -->
         <ImageView
             android:id="@+id/couponImageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:src="@drawable/amazon"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop" />
 
-        <!-- Text on the right -->
         <TextView
-            android:id="@+id/amazonCouponDescriptionTextView"
+            android:id="@+id/amazon_coupon_amount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Get 10% Discount on Amazon on purchase of minimum 1000 upTo 100"
+            android:text="200 Tala Coins"
+            android:fontFamily="@font/lexend_semibold"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_alignTop="@+id/couponImageView"
+            android:layout_toEndOf="@id/couponImageView"
+            android:layout_marginStart="16dp" />
+
+        <TextView
+            android:id="@+id/amazon_coupon_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/amazon_coupon_amount_tv"
+            android:text="Get 10% Discount on Amazon on purchase of minimum $1000 up to $100"
             android:textSize="16sp"
+            android:layout_alignBottom="@+id/couponImageView"
             android:textColor="@color/black"
             android:layout_toEndOf="@id/couponImageView"
-            android:layout_toRightOf="@id/couponImageView"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_centerVertical="true" />
+            android:layout_marginStart="16dp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
