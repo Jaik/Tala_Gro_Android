@@ -17,9 +17,13 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
+import co.talagro.app.retrofit.RewardServiceCallBack;
 import co.talagro.app.retrofit.UserServiceCallBack;
 import co.talagro.app.retrofit.request.UserUpdateRequest;
+import co.talagro.app.retrofit.response.RewardResponse;
+import co.talagro.app.retrofit.response.Type;
 import co.talagro.app.retrofit.response.UserResponse;
+import co.talagro.app.retrofit.service.RewardApiClient;
 import co.talagro.app.retrofit.service.UserApiClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeActivity extends AppCompatActivity implements UserServiceCallBack {
+public class HomeActivity extends AppCompatActivity implements UserServiceCallBack, RewardServiceCallBack {
 
     private final StateTransitionManager stateTransitionManager = new StateTransitionManager();
 
@@ -185,12 +189,47 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
 
     }
 
+    private void getRewards(Type type) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(TALA_GRO_BACKEND_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // Create an instance of the API service interface
+        RewardApiClient apiService = retrofit.create(RewardApiClient.class);
+
+        // Make the API call
+        Call<RewardResponse> call = apiService.getRewards(type);
+        call.enqueue(new Callback<RewardResponse>() {
+            @Override
+            public void onResponse(Call<RewardResponse> call, Response<RewardResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    RewardResponse data = response.body();
+                    onDataReceived(data);
+                } else {
+                    onError("Error: " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<RewardResponse> call, Throwable t) {
+                // Handle the failure case
+                onError("Error: " + t.getCause());
+            }
+        });
+
+    }
+
     @Override
     public void onDataReceived(UserResponse data) {
         final int userCoins = data.getCoins();
         String coins_heading = String.format("You have %s Tala Coins", userCoins);
         ((TextView)findViewById(R.id.coin_card_text_heading)).setText(coins_heading);
         Log.i("getCoin", String.valueOf(userCoins));
+    }
+
+    @Override
+    public void onDataReceived(RewardResponse data) {
+        Log.i("RewardService", data.toString());
     }
 
     @Override
