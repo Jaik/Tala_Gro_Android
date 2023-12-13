@@ -21,6 +21,7 @@ public class BrandCouponsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brand_coupons);
+        getSupportActionBar().setTitle("Hot Deals");
 
         CardView amazonCardView = findViewById(R.id.amazon_card);
         CardView nikeCardView = findViewById(R.id.nike_card);
@@ -46,6 +47,7 @@ public class BrandCouponsActivity extends AppCompatActivity {
                 if(!isCardClicked) {
                     // Perform an action when the card is clicked
                     showCardRedeems();
+                    //setResult();
                 }// Function to display card redeems or any other action
             }
         });

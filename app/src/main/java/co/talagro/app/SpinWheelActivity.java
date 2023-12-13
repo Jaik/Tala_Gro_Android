@@ -23,7 +23,7 @@ public class SpinWheelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spin_wheel);
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Lucky Wheel!");
 
         generateWheelItems();
 

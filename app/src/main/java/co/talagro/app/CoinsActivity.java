@@ -19,7 +19,7 @@ public class CoinsActivity extends AppCompatActivity {
         String coinBalance = String.valueOf(receivedIntent.getIntExtra("COIN_BALANCE", 0));
         ((TextView)findViewById(R.id.coin_page_coin_value)).setText(coinBalance);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Redeem Coins");
 
         RotateAnimation rotateAnimation = new RotateAnimation(0, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
@@ -38,7 +38,13 @@ public class CoinsActivity extends AppCompatActivity {
 
         findViewById(R.id.card_hot_deals).setOnClickListener(view -> {
             Intent intent = new Intent(CoinsActivity.this, BrandCouponsActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 100);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }
