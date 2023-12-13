@@ -28,7 +28,7 @@
             android:id="@+id/amazonCouponDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your multiline coupon description goes here. You can add multiple lines as needed."
+            android:text="Get 10% Discount on Amazon on purchase of minimum 1000 upTo 100"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_toEndOf="@id/couponImageView"

@@ -17,7 +17,7 @@
             android:id="@+id/couponImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/amazon"
+            android:src="@drawable/puregold"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -25,10 +25,10 @@
 
         <!-- Text on the right -->
         <TextView
-            android:id="@+id/nikeCouponDescriptionTextView"
+            android:id="@+id/puregoldCouponDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your multiline coupon description goes here. You can add multiple lines as needed."
+            android:text="Get 200 Discount code on purchase of 1500"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_toEndOf="@id/couponImageView"

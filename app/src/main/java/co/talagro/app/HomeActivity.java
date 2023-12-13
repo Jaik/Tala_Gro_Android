@@ -81,7 +81,6 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
             Intent intent = new Intent(HomeActivity.this, CoinsActivity.class);
             intent.putExtra("COIN_BALANCE", coinBalance);
             startActivity(intent);
-            getRewards(Type.spin_the_wheel);
         });
     }
 
