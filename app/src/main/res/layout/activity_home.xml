@@ -28,6 +28,7 @@
                 android:background="@color/primary">
 
                 <ImageView
+                    android:id="@+id/loan_card_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -64,6 +65,7 @@
                 tools:ignore="RtlSymmetry" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loan_card_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

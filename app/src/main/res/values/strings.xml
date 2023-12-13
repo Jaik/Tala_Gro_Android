@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Tala Gro</string>
-    <string name="string_application">Repayment</string>
+    <string name="string_loan_application_heading">Apply For New Loan</string>
+    <string name="string_loan_disbursement_heading">Loan Approved!! Disbursing Your Loan</string>
+    <string name="string_loan_repayment_heading">Repay your Loan</string>
+    <string name="string_loan_application_body">Apply for loan and get money instantly into your account.</string>
+    <string name="string_loan_disbursement_body">Your Loan has been approved, Disburse the amount in your bank account</string>
+    <string name="string_loan_repayment_body">Repay your Total outstanding balance</string>
+    <string name="string_loan_application_button_text">Apply</string>
+    <string name="string_loan_disbursement_button_text">Disburse</string>
+    <string name="string_loan_repayment_button_text">Repay Loan</string>
 </resources>
