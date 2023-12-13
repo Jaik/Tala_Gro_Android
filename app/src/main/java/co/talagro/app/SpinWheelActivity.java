@@ -52,17 +52,17 @@ public class SpinWheelActivity extends AppCompatActivity {
 
     private void generateWheelItems() {
         wheelItems = new ArrayList<>();
-        wheelItems.add(new WheelItem(Color.parseColor("#fc6c6c"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.chat) , "100 $"));
-        wheelItems.add(new WheelItem(Color.parseColor("#00E6FF"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.coupon) , "0 $"));
-        wheelItems.add(new WheelItem(Color.parseColor("#F00E6F"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.ice_cream), "30 $"));
-        wheelItems.add(new WheelItem(Color.parseColor("#00E6FF"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.lemonade), "6000 $"));
-        wheelItems.add(new WheelItem(Color.parseColor("#fc6c6c"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.orange), "9 $"));
-        wheelItems.add(new WheelItem(Color.parseColor("#00E6FF"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.shop), "20 $"));
+        wheelItems.add(new WheelItem(Color.parseColor("#20BEC6"), BitmapFactory.decodeResource(getResources(),
+                R.drawable.dollar_w) , "100 $"));
+        wheelItems.add(new WheelItem(Color.parseColor("#3a3a3a"), BitmapFactory.decodeResource(getResources(),
+                R.drawable.dollar_w) , "0 $"));
+        wheelItems.add(new WheelItem(Color.parseColor("#EA5813"), BitmapFactory.decodeResource(getResources(),
+                R.drawable.dollar_w),"30 $"));
+        wheelItems.add(new WheelItem(Color.parseColor("#20BEC6"), BitmapFactory.decodeResource(getResources(),
+                R.drawable.dollar_w), "6000 $"));
+        wheelItems.add(new WheelItem(Color.parseColor("#3a3a3a"), BitmapFactory.decodeResource(getResources(),
+                R.drawable.dollar_w), "9 $"));
+        wheelItems.add(new WheelItem(Color.parseColor("#EA5813"), BitmapFactory.decodeResource(getResources(),
+                R.drawable.dollar_w), "20 $"));
     }
 }
