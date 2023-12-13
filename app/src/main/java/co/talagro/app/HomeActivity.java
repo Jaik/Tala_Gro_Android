@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
     private final Map<State, String> alertTitleMap = new HashMap<>();
     private final Map<State, String> alertMessageMap = new HashMap<>();
     private State currentState;
+    private static int coinBalance = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
 
         findViewById(R.id.btn_redeem).setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, CoinsActivity.class);
+            intent.putExtra("COIN_BALANCE", coinBalance);
             startActivity(intent);
             getRewards(Type.spin_the_wheel);
         });
@@ -225,6 +227,7 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
         final int userCoins = data.getCoins();
         String coins_heading = String.format("You have %s Tala Coins", userCoins);
         ((TextView)findViewById(R.id.coin_card_text_heading)).setText(coins_heading);
+        coinBalance = userCoins;
         Log.i("getCoin", String.valueOf(userCoins));
     }
 
