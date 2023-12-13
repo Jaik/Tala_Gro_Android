@@ -97,12 +97,12 @@
                 android:background="@color/primary">
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="359dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/img_loan_status_apply" />
+                    android:src="@drawable/coin" />
             </LinearLayout>
 
             <TextView
