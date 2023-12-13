@@ -24,20 +24,30 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/lexend_light"
+            android:text="You can redeem any one brand offer "
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
         <include layout="@layout/brand_card_amazon"
-            android:id="@+id/card"
+            android:id="@+id/amazon_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp" />
 
         <include layout="@layout/brand_card_amazon"
-            android:id="@+id/card"
+            android:id="@+id/nike_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp" />
 
         <include layout="@layout/brand_card_amazon"
-            android:id="@+id/card"
+            android:id="@+id/walmart_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp" />

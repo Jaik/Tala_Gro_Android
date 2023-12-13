@@ -25,7 +25,7 @@
 
         <!-- Text on the right -->
         <TextView
-            android:id="@+id/couponDescriptionTextView"
+            android:id="@+id/amazonCouponDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Your multiline coupon description goes here. You can add multiple lines as needed."
