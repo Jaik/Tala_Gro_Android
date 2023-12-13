@@ -4,24 +4,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
     private final StateTransitionManager stateTransitionManager = new StateTransitionManager();
+
+    private final Map<State, State> stateTransitionMap = new HashMap<>();
+    State currentState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        stateTransitionMap.put(State.LOAN_APPLICATION, State.LOAN_DISBURSEMENT);
+        stateTransitionMap.put(State.LOAN_DISBURSEMENT, State.LOAN_REPAYMENT);
+        stateTransitionMap.put(State.LOAN_REPAYMENT, State.LOAN_APPLICATION);
+
         getSupportActionBar().hide();
-        State currentState = stateTransitionManager.getCurrentState();
+        currentState = stateTransitionManager.getCurrentState();
 
         // APPLICATION -> DISBURSEMENT -> REPAYMENT -> POPUP -> APPLICATION
 
+        updateViewBasedOnState(currentState);
 
+        findViewById(R.id.loan_card_button).setOnClickListener(view -> {
+            State nextState = stateTransitionMap.get(currentState);
+            stateTransitionManager.updateCurrentState(nextState);
+            updateViewBasedOnState(nextState);
+            currentState = nextState;
+        });
+    }
+
+    private void updateViewBasedOnState(State currentState) {
         switch (currentState) {
             case LOAN_APPLICATION:
                 ((TextView)findViewById(R.id.loan_card_text_heading)).setText(R.string.string_loan_application_heading);
