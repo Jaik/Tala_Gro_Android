@@ -3,10 +3,13 @@ package co.talagro.app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bluehomestudio.luckywheel.LuckyWheel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +42,14 @@ public class HomeActivity extends AppCompatActivity {
             stateTransitionManager.updateCurrentState(nextState);
             updateViewBasedOnState(nextState);
             currentState = nextState;
+        });
+
+        findViewById(R.id.btn_redeem).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, SpinWheelActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
