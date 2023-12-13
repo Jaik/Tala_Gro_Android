@@ -145,7 +145,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:layout_marginStart="35dp"
-                    android:src="@drawable/ic_mobile_phone_rebrand" />
+                    android:src="@drawable/spin" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -169,7 +169,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/lexend_semibold"
                     android:gravity="center_vertical"
-                    android:text="Spin lucky wheel"
+                    android:text="Hot Deals"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -179,7 +179,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:layout_marginStart="35dp"
-                    android:src="@drawable/ic_mobile_phone_rebrand" />
+                    android:src="@drawable/coupon" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </androidx.appcompat.widget.LinearLayoutCompat>
