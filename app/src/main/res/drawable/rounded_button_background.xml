@@ -1,0 +1,7 @@
+<!-- rounded_button_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:fontFamily="@font/lexend_regular">
+    <corners android:radius="9dp" />
+    <solid android:color="#EA5813" />
+</shape>

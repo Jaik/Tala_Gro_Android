@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="20dp"
-                android:background="#EA5813"
+                android:background="@drawable/rounded_button_background"
                 android:padding="10dp"
                 android:text="Apply for loan"
                 android:textColor="@color/white" />
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="20dp"
-                android:background="#EA5813"
+                android:background="@drawable/rounded_button_background"
                 android:padding="10dp"
                 android:text="Redeem coins"
                 android:textColor="@color/white" />
