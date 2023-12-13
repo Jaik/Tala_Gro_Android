@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
         alertMessageMap.put(State.LOAN_DISBURSEMENT, "Now Check your bank account");
         alertMessageMap.put(State.LOAN_REPAYMENT, "Thank you for repayment");
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("TalaGro Home");
         currentState = stateTransitionManager.getCurrentState();
 
         // APPLICATION -> DISBURSEMENT -> REPAYMENT -> POPUP -> APPLICATION

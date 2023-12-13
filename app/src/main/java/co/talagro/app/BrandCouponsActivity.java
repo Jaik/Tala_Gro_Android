@@ -19,6 +19,7 @@ public class BrandCouponsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brand_coupons);
+        getSupportActionBar().setTitle("Hot Deals");
 
         CardView cardView = findViewById(R.id.card);
 
@@ -28,6 +29,7 @@ public class BrandCouponsActivity extends AppCompatActivity {
                 if(!isCardClicked) {
                     // Perform an action when the card is clicked
                     showCardRedeems();
+                    //setResult();
                 }// Function to display card redeems or any other action
             }
         });
