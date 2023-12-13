@@ -15,6 +15,9 @@
         <activity android:name=".SpinWheelActivity"
             android:exported="false" />
         <activity
+            android:name=".CoinsActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity

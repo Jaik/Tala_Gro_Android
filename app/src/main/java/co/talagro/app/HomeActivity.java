@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bluehomestudio.luckywheel.LuckyWheel;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,12 +42,9 @@ public class HomeActivity extends AppCompatActivity {
             currentState = nextState;
         });
 
-        findViewById(R.id.btn_redeem).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, SpinWheelActivity.class);
-                startActivity(intent);
-            }
+        findViewById(R.id.btn_redeem).setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, CoinsActivity.class);
+            startActivity(intent);
         });
     }
 
