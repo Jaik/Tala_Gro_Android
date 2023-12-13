@@ -35,5 +35,10 @@ public class CoinsActivity extends AppCompatActivity {
             Intent intent = new Intent(CoinsActivity.this, SpinWheelActivity.class);
             startActivity(intent);
         });
+
+        findViewById(R.id.card_hot_deals).setOnClickListener(view -> {
+            Intent intent = new Intent(CoinsActivity.this, BrandCouponsActivity.class);
+            startActivity(intent);
+        });
     }
 }
