@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tala_Gro_Android"
 include(":app")
- 
