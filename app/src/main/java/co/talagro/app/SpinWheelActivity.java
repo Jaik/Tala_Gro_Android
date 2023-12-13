@@ -3,14 +3,12 @@ package co.talagro.app;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bluehomestudio.luckywheel.LuckyWheel;
-import com.bluehomestudio.luckywheel.OnLuckyWheelReachTheTarget;
 import com.bluehomestudio.luckywheel.WheelItem;
 
 import java.util.ArrayList;
@@ -33,36 +31,25 @@ public class SpinWheelActivity extends AppCompatActivity {
         luckyWheel.addWheelItems(wheelItems);
         luckyWheel.setTarget(1);
 
-        luckyWheel.setLuckyWheelReachTheTarget(new OnLuckyWheelReachTheTarget() {
-            @Override
-            public void onReachTarget() {
-                Toast.makeText(SpinWheelActivity.this, "Target Reached", Toast.LENGTH_LONG).show();
-            }
-        });
+        luckyWheel.setLuckyWheelReachTheTarget(() -> Toast.makeText(SpinWheelActivity.this, "Target Reached", Toast.LENGTH_LONG).show());
 
         Button start = findViewById(R.id.start_btn);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                luckyWheel.rotateWheelTo(1);
-            }
-        });
-
+        start.setOnClickListener(v -> luckyWheel.rotateWheelTo(1));
     }
 
     private void generateWheelItems() {
         wheelItems = new ArrayList<>();
         wheelItems.add(new WheelItem(Color.parseColor("#20BEC6"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.dollar_w) , "100 $"));
+                R.drawable.ic_empty) , "Limit increase of $100"));
         wheelItems.add(new WheelItem(Color.parseColor("#3a3a3a"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.dollar_w) , "0 $"));
+                R.drawable.ic_empty) , "Airtime balance of $100"));
         wheelItems.add(new WheelItem(Color.parseColor("#EA5813"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.dollar_w),"30 $"));
+                R.drawable.ic_empty),"$100 discount on next loan"));
         wheelItems.add(new WheelItem(Color.parseColor("#20BEC6"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.dollar_w), "6000 $"));
+                R.drawable.ic_empty), "Increased bonus of $100 on referrals"));
         wheelItems.add(new WheelItem(Color.parseColor("#3a3a3a"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.dollar_w), "9 $"));
+                R.drawable.ic_empty), "1000 Tala coins"));
         wheelItems.add(new WheelItem(Color.parseColor("#EA5813"), BitmapFactory.decodeResource(getResources(),
-                R.drawable.dollar_w), "20 $"));
+                R.drawable.ic_empty), "Try again"));
     }
 }

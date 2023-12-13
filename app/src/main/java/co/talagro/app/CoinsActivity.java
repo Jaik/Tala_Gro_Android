@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
@@ -21,8 +20,8 @@ public class CoinsActivity extends AppCompatActivity {
                 Animation.RELATIVE_TO_SELF, 0.5f);
 
         rotateAnimation.setInterpolator(new LinearInterpolator());
-        rotateAnimation.setDuration(500);
-        rotateAnimation.setRepeatCount(Animation.INFINITE);
+        rotateAnimation.setDuration(3000);
+        rotateAnimation.setRepeatCount(Animation.ABSOLUTE);
 
         findViewById(R.id.img_coin).startAnimation(rotateAnimation);
 
