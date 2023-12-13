@@ -1,5 +1,7 @@
 package co.talagro.app;
 
+import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +17,17 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HomeActivity extends AppCompatActivity {
+import co.talagro.app.retrofit.UserServiceCallBack;
+import co.talagro.app.retrofit.request.UserUpdateRequest;
+import co.talagro.app.retrofit.response.UserResponse;
+import co.talagro.app.retrofit.service.UserApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class HomeActivity extends AppCompatActivity implements UserServiceCallBack {
 
     private final StateTransitionManager stateTransitionManager = new StateTransitionManager();
 
@@ -47,12 +60,14 @@ public class HomeActivity extends AppCompatActivity {
 
         updateViewBasedOnState(currentState);
 
-
         findViewById(R.id.loan_card_button).setOnClickListener(view -> {
             showCustomDialog(alertTitleMap.get(currentState), alertMessageMap.get(currentState));
             State nextState = stateTransitionMap.get(currentState);
             stateTransitionManager.updateCurrentState(nextState);
             updateViewBasedOnState(nextState);
+            if(State.LOAN_REPAYMENT.equals(currentState)) {
+                updateCoins(1);
+            }
             currentState = nextState;
 
         });
@@ -109,5 +124,77 @@ public class HomeActivity extends AppCompatActivity {
         // Create and show the AlertDialog
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void getCoins(int id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(TALA_GRO_BACKEND_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // Create an instance of the API service interface
+        UserApiClient apiService = retrofit.create(UserApiClient.class);
+
+        // Make the API call
+        Call<UserResponse> call = apiService.getCoins(id);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse data = response.body();
+                    onDataReceived(data);
+                } else {
+                    onError("Error: " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                // Handle the failure case
+                onError("Error: " + t.getCause());
+            }
+        });
+
+    }
+
+    private void updateCoins(int id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(TALA_GRO_BACKEND_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // Create an instance of the API service interface
+        UserApiClient apiService = retrofit.create(UserApiClient.class);
+
+        UserUpdateRequest userUpdateRequest = new UserUpdateRequest(2000);
+        // Make the API call
+        Call<UserResponse> call = apiService.updateCoins(id, userUpdateRequest);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse data = response.body();
+                    onDataReceived(data);
+                } else {
+                    onError("Error: " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                // Handle the failure case
+                onError("Error: " + t.getCause());
+            }
+        });
+
+    }
+
+    @Override
+    public void onDataReceived(UserResponse data) {
+        final int userCoins = data.getCoins();
+        String coins_heading = String.format("You have %s Tala Coins", userCoins);
+        ((TextView)findViewById(R.id.coin_card_text_heading)).setText(coins_heading);
+        Log.i("getCoin", String.valueOf(userCoins));
+    }
+
+    @Override
+    public void onError(String errorMessage) {
+        Log.e("UserService", errorMessage);
     }
 }

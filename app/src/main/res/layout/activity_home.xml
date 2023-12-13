@@ -115,7 +115,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/lexend_semibold"
                 android:paddingStart="16dp"
-                android:text="You have 100 Tala coins"
+                android:text="You have 0 Tala coins"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry" />
