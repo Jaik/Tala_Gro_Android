@@ -9,8 +9,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bluehomestudio.luckywheel.LuckyWheel;
@@ -80,9 +83,25 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+//        // Get the MenuItem by its ID
+//        MenuItem coinsMenuItem = menu.findItem(R.id.your_coins);
+//
+//        // Set the available coins count
+//        Intent intent = getIntent();
+//        String coinBalance = String.valueOf(intent.getIntExtra(COIN_BALANCE, 0));
+//        ((TextView) findViewById(R.id.your_coins)).setText(coinBalance);
+//        coinsMenuItem.setTitle(coinBalance);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
+        if (item.getItemId() == R.id.your_consistent_item || item.getItemId() == R.id.your_coins) {
             return true;
         }
         return super.onOptionsItemSelected(item);

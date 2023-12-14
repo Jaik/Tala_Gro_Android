@@ -1,0 +1,18 @@
+<!-- common_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Your consistent action item -->
+    <item
+        android:id="@+id/your_consistent_item"
+        android:title="Coins"
+        app:showAsAction="always"
+        android:icon="@drawable/coin" />
+
+    <item
+        android:id="@+id/your_coins"
+        android:title="Coins"
+        app:showAsAction="always" />
+
+    <!-- Other menu items if needed -->
+</menu>

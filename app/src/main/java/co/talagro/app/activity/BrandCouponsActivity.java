@@ -5,13 +5,17 @@ import static co.talagro.app.util.Const.COIN_BALANCE;
 import static co.talagro.app.util.Const.REDEEM_CARD_RESULT_CODE;
 import static co.talagro.app.util.Const.TALA_GRO_BACKEND_URL;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -34,6 +38,8 @@ public class BrandCouponsActivity extends AppCompatActivity implements UserServi
     private boolean isCardClicked = false;
     private int coinBalance;
 
+    private int availableCoins = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +51,33 @@ public class BrandCouponsActivity extends AppCompatActivity implements UserServi
         CardView pureGoldCardView = findViewById(R.id.puregold_card);
         CardView walmartCardView = findViewById(R.id.walmart_card);
 
-        redeemCard(amazonCardView, -1000);
-        redeemCard(pureGoldCardView, -750);
-        redeemCard(walmartCardView, -500);
+        if (!isCardClicked) {
+            redeemCard(amazonCardView, -1000);
+            redeemCard(pureGoldCardView, -750);
+            redeemCard(walmartCardView, -500);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+//        // Get the MenuItem by its ID
+//        MenuItem coinsMenuItem = menu.findItem(R.id.your_coins);
+//
+//        // Set the available coins count
+//        Intent intent = getIntent();
+//        String coinBalance = String.valueOf(intent.getIntExtra(COIN_BALANCE, 0));
+//        ((TextView) findViewById(R.id.your_coins)).setText(coinBalance);
+//        coinsMenuItem.setTitle(coinBalance);
+
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
+        if (item.getItemId() == R.id.your_consistent_item || item.getItemId() == R.id.your_coins) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -68,12 +92,10 @@ public class BrandCouponsActivity extends AppCompatActivity implements UserServi
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isCardClicked) {
                     String s = generateRandomString();
                     CustomDialog.showDialog(BrandCouponsActivity.this, "Congrats, Here is your Code! " + s);
                     updateCoins(1, coins);
                 }// Function to display card redeems or any other action
-            }
         });
     }
 

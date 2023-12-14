@@ -43,11 +43,13 @@ public class CoinsActivity extends AppCompatActivity {
 
         findViewById(R.id.card_spin_wheel).setOnClickListener(view -> {
             Intent intent = new Intent(CoinsActivity.this, SpinWheelActivity.class);
+            intent.putExtra("COIN_BALANCE", coinBalance);
             startActivityForResult(intent, SPIN_WHEEL_REQUEST_CODE);
         });
 
         findViewById(R.id.card_hot_deals).setOnClickListener(view -> {
             Intent intent = new Intent(CoinsActivity.this, BrandCouponsActivity.class);
+            intent.putExtra("COIN_BALANCE", coinBalance);
             startActivityForResult(intent, REDEEM_CARD_REQUEST_CODE);
         });
 
