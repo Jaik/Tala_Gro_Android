@@ -66,6 +66,8 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
         getSupportActionBar().setTitle("Lucky Wheel");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getCoins(1);
+
         generateWheelItems();
 
         luckyWheel = findViewById(R.id.lucky_wheel);
@@ -199,8 +201,6 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     @Override
     public void onDataReceived(UserResponse data) {
         final int userCoins = data.getCoins();
-        String coins_heading = String.format("You have %s Tala Coins", userCoins);
-        ((TextView)findViewById(R.id.coin_card_text_heading)).setText(coins_heading);
         availableCoins = userCoins;
         Log.i("getCoin", String.valueOf(userCoins));
     }
