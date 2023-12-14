@@ -17,6 +17,7 @@ app:cardUseCompatPadding="true">
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:src="@drawable/puregold"
+        android:padding="5dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:scaleType="centerCrop" />
