@@ -25,7 +25,7 @@
             android:id="@+id/amazon_coupon_amount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="200 Tala Coins"
+            android:text="1000 Tala Coins"
             android:fontFamily="@font/lexend_semibold"
             android:textSize="17sp"
             android:textColor="@color/black"

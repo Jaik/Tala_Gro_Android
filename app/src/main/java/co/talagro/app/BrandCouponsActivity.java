@@ -1,11 +1,16 @@
 package co.talagro.app;
 
 
+import static co.talagro.app.Const.COIN_BALANCE;
+import static co.talagro.app.Const.REDEEM_CARD_RESULT_CODE;
+import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,9 +20,21 @@ import androidx.cardview.widget.CardView;
 
 import java.security.SecureRandom;
 
-public class BrandCouponsActivity extends AppCompatActivity {
+import co.talagro.app.retrofit.UserServiceCallBack;
+import co.talagro.app.retrofit.request.UserUpdateRequest;
+import co.talagro.app.retrofit.response.RewardResponse;
+import co.talagro.app.retrofit.response.UserResponse;
+import co.talagro.app.retrofit.service.UserApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class BrandCouponsActivity extends AppCompatActivity implements UserServiceCallBack {
 
     private boolean isCardClicked = false;
+    private int coinBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +43,12 @@ public class BrandCouponsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Hot Deals");
 
         CardView amazonCardView = findViewById(R.id.amazon_card);
-        CardView nikeCardView = findViewById(R.id.puregold_card);
+        CardView pureGoldCardView = findViewById(R.id.puregold_card);
         CardView walmartCardView = findViewById(R.id.walmart_card);
 
-        redeemCard(amazonCardView);
-        redeemCard(nikeCardView);
-        redeemCard(walmartCardView);
+        redeemCard(amazonCardView, -1000);
+        redeemCard(pureGoldCardView, -750);
+        redeemCard(walmartCardView, -500);
     }
 
     private void showCardRedeems() {
@@ -39,38 +56,62 @@ public class BrandCouponsActivity extends AppCompatActivity {
         // Add your logic here to display the card redeems
     }
 
-    private void redeemCard(CardView cardView) {
+    private void redeemCard(CardView cardView, int coins) {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!isCardClicked) {
                     String s = generateRandomString();
-                    CustomDialog.showDialog(BrandCouponsActivity.this, "Congrats, here is your code! " + s);
-                    //showCardRedeems();
-                    //setResult();
+                    CustomDialog.showDialog(BrandCouponsActivity.this, "Congrats, Here is your Code! " + s);
+                    updateCoins(1, coins);
                 }// Function to display card redeems or any other action
             }
         });
     }
 
-    private void createTextForAmazon() {
-        TextView brandCouponText = findViewById(R.id.amazon_coupon_description_tv);
-        String htmlText = "<b>Amazon</b><br/><span>15% Off</span><br/><span>On purchase of $199 and more</span>";
-        brandCouponText.setText(Html.fromHtml(htmlText));
+    private void updateCoins(int id, int coins) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(TALA_GRO_BACKEND_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // Create an instance of the API service interface
+        UserApiClient apiService = retrofit.create(UserApiClient.class);
+
+        UserUpdateRequest userUpdateRequest = new UserUpdateRequest(coins);
+        // Make the API call
+        Call<UserResponse> call = apiService.updateCoins(id, userUpdateRequest);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse data = response.body();
+                    onDataReceived(data);
+                } else {
+                    onError("Error: " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                // Handle the failure case
+                onError("Error: " + t.getCause());
+            }
+        });
 
     }
 
-    private void createTextForWalmart() {
-        TextView brandCouponText = findViewById(R.id.amazon_coupon_description_tv);
-        String htmlText = "<b>First line in bold</b><br/><small>Second line in smaller font</small>";
-        brandCouponText.setText(Html.fromHtml(htmlText));
-
+    @Override
+    public void onDataReceived(UserResponse data) {
+        final int userCoins = data.getCoins();
+        coinBalance = userCoins;
+        Intent intent = new Intent();
+        intent.putExtra(COIN_BALANCE, coinBalance);
+        setResult(REDEEM_CARD_RESULT_CODE, intent);
+        Log.i("getCoin", String.valueOf(userCoins));
     }
 
-    private void createTextForNike() {
-        TextView brandCouponText = findViewById(R.id.amazon_coupon_description_tv);
-        String htmlText = "<b>First line in bold</b><br/><small>Second line in smaller font</small>";
-        brandCouponText.setText(Html.fromHtml(htmlText));
+    @Override
+    public void onError(String errorMessage) {
+        Log.e("UserService", errorMessage);
     }
 
     private static String generateRandomString() {
@@ -91,28 +132,6 @@ public class BrandCouponsActivity extends AppCompatActivity {
         }
 
         return randomString.toString();
-    }
-
-    private void showCustomDialog(String title, String message) {
-        // Create an AlertDialog builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        // Set the title and message
-        builder.setTitle(title);
-        builder.setMessage(message);
-
-        // Add a button with a custom click listener
-        builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // Do something when the "Close" button is clicked
-                dialogInterface.dismiss(); // Dismiss the dialog
-            }
-        });
-
-        // Create and show the AlertDialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
 }

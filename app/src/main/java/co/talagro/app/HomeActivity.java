@@ -1,5 +1,9 @@
 package co.talagro.app;
 
+import static co.talagro.app.Const.COINS_PAGE_REQUEST_CODE;
+import static co.talagro.app.Const.COINS_PAGE_RESULT_CODE;
+import static co.talagro.app.Const.COIN_BALANCE;
+import static co.talagro.app.Const.REDEEM_CARD_REQUEST_CODE;
 import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,12 +43,13 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
     private final Map<State, String> alertTitleMap = new HashMap<>();
     private final Map<State, String> alertMessageMap = new HashMap<>();
     private State currentState;
-    private static int coinBalance = 0;
+    private static int coinBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getCoins(1);
 
         stateTransitionMap.put(State.LOAN_APPLICATION, State.LOAN_DISBURSEMENT);
         stateTransitionMap.put(State.LOAN_DISBURSEMENT, State.LOAN_REPAYMENT);
@@ -59,11 +64,6 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
         alertMessageMap.put(State.LOAN_REPAYMENT, "Thank you for repayment");
 
         getSupportActionBar().setTitle("TalaGro Home");
-        currentState = stateTransitionManager.getCurrentState();
-
-        // APPLICATION -> DISBURSEMENT -> REPAYMENT -> POPUP -> APPLICATION
-
-        updateViewBasedOnState(currentState);
 
         findViewById(R.id.loan_card_button).setOnClickListener(view -> {
             showCustomDialog(alertTitleMap.get(currentState), alertMessageMap.get(currentState));
@@ -80,8 +80,19 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
         findViewById(R.id.btn_redeem).setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, CoinsActivity.class);
             intent.putExtra("COIN_BALANCE", coinBalance);
-            startActivity(intent);
+            startActivityForResult(intent, COINS_PAGE_REQUEST_CODE);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data != null) {
+            int coinBalanceInt = data.getIntExtra(COIN_BALANCE, coinBalance);
+            String coins_heading = String.format("You have %s Tala Coins", coinBalanceInt);
+            ((TextView)findViewById(R.id.coin_card_text_heading)).setText(coins_heading);
+            coinBalance = coinBalanceInt;
+        }
     }
 
     private void updateViewBasedOnState(State currentState) {
@@ -148,6 +159,8 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
                 if (response.isSuccessful() && response.body() != null) {
                     UserResponse data = response.body();
                     onDataReceived(data);
+                    currentState = stateTransitionManager.getCurrentState();
+                    updateViewBasedOnState(currentState);
                 } else {
                     onError("Error: " + response.code());
                 }
