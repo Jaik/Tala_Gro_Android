@@ -4,6 +4,7 @@ import static co.talagro.app.Const.COINS_PAGE_RESULT_CODE;
 import static co.talagro.app.Const.COIN_BALANCE;
 import static co.talagro.app.Const.REDEEM_CARD_REQUEST_CODE;
 import static co.talagro.app.Const.REDEEM_CARD_RESULT_CODE;
+import static co.talagro.app.Const.SPIN_WHEEL_REQUEST_CODE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,7 +39,7 @@ public class CoinsActivity extends AppCompatActivity {
 
         findViewById(R.id.card_spin_wheel).setOnClickListener(view -> {
             Intent intent = new Intent(CoinsActivity.this, SpinWheelActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, SPIN_WHEEL_REQUEST_CODE);
         });
 
         findViewById(R.id.card_hot_deals).setOnClickListener(view -> {
