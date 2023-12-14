@@ -47,8 +47,6 @@ public class BrandCouponsActivity extends AppCompatActivity implements UserServi
     private boolean isCardClicked = false;
     private int coinBalance;
 
-    private int availableCoins = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

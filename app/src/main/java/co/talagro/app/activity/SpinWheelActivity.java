@@ -49,6 +49,7 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     int max = 5;
     int min = 1;
     int selectedTarget;
+    int availableCoins;
 
     private static final String[] rewards = {
             "$100 Limit increase",
@@ -101,10 +102,9 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem coinsMenuItem = menu.findItem(R.id.your_coins);
         if (coinsMenuItem != null) {
-            Intent intent = getIntent();
-            int coinBalance = intent.getIntExtra("COIN_BALANCE", 0);
-            String coins = String.valueOf(coinBalance);
-            String coinBalanceText = coinBalance + " coins";
+            getCoins(1);
+            String coins = String.valueOf(availableCoins);
+            String coinBalanceText = availableCoins + " coins";
             SpannableString spannableString = new SpannableString(coinBalanceText.toLowerCase(Locale.US));
             spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, coinBalanceText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableString.setSpan(new RelativeSizeSpan(1.2f), 0, coinBalanceText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -167,12 +167,41 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
 
     }
 
+    private void getCoins(int id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(TALA_GRO_BACKEND_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // Create an instance of the API service interface
+        UserApiClient apiService = retrofit.create(UserApiClient.class);
+
+        // Make the API call
+        Call<UserResponse> call = apiService.getCoins(id);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse data = response.body();
+                    onDataReceived(data);
+                } else {
+                    onError("Error: " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                // Handle the failure case
+                onError("Error: " + t.getCause());
+            }
+        });
+
+    }
+
     @Override
     public void onDataReceived(UserResponse data) {
         final int userCoins = data.getCoins();
-        Intent intent = new Intent();
-        intent.putExtra(COIN_BALANCE, userCoins);
-        setResult(SPIN_WHEEL_RESULT_CODE, intent);
+        String coins_heading = String.format("You have %s Tala Coins", userCoins);
+        ((TextView)findViewById(R.id.coin_card_text_heading)).setText(coins_heading);
+        availableCoins = userCoins;
         Log.i("getCoin", String.valueOf(userCoins));
     }
 
