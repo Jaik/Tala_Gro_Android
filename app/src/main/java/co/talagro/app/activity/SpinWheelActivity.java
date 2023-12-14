@@ -104,7 +104,6 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem coinsMenuItem = menu.findItem(R.id.your_coins);
         if (coinsMenuItem != null) {
-            getCoins(1);
             String coins = String.valueOf(availableCoins);
             String coinBalanceText = availableCoins + " coins";
             SpannableString spannableString = new SpannableString(coinBalanceText.toLowerCase(Locale.US));
