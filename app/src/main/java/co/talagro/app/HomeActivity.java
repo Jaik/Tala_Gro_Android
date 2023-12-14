@@ -1,9 +1,7 @@
 package co.talagro.app;
 
 import static co.talagro.app.Const.COINS_PAGE_REQUEST_CODE;
-import static co.talagro.app.Const.COINS_PAGE_RESULT_CODE;
 import static co.talagro.app.Const.COIN_BALANCE;
-import static co.talagro.app.Const.REDEEM_CARD_REQUEST_CODE;
 import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +12,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -117,7 +114,6 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
                 ((AppCompatButton)findViewById(R.id.loan_card_button)).setText(R.string.string_loan_repayment_button_text);
                 ((ImageView)findViewById(R.id.loan_card_image)).setImageResource(R.drawable.img_loan_status_apply);
                 stateTransitionManager.updateCurrentState(State.LOAN_APPLICATION);
-
         }
     }
 
@@ -231,7 +227,6 @@ public class HomeActivity extends AppCompatActivity implements UserServiceCallBa
                 onError("Error: " + t.getCause());
             }
         });
-
     }
 
     @Override

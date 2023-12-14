@@ -14,21 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:textColor="#000"
-        android:text="Enter you Tala pin"
         android:fontFamily="@font/lexend_semibold"
-        android:textSize="18sp"
-        android:textIsSelectable="false" />
+        android:gravity="center"
+        android:text="Enter you Tala pin"
+        android:textColor="#000"
+        android:textIsSelectable="false"
+        android:textSize="20sp" />
 
     <com.chaos.view.PinView
         android:id="@+id/pinview"
-        android:layout_marginTop="32dp"
-
         style="@style/PinWidget.PinView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="32dp"
         android:cursorVisible="true"
         android:gravity="center"
         android:inputType="number"

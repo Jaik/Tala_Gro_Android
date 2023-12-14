@@ -6,7 +6,6 @@ import static co.talagro.app.Const.REDEEM_CARD_RESULT_CODE;
 import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;

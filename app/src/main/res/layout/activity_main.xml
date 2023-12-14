@@ -22,7 +22,7 @@
             android:textColor="#000"
             android:text="Enter phone number"
             android:fontFamily="@font/lexend_semibold"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textIsSelectable="false" />
 
         <LinearLayout
@@ -37,10 +37,12 @@
             android:layout_marginTop="32dp"
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
+            android:textSize="20sp"
             android:inputType="phone"
             android:text="+52"
+            android:editable="false"
             android:fontFamily="@font/lexend_semibold"
-            tools:ignore="LabelFor"
+            tools:ignore="Deprecated,LabelFor"
             tools:targetApi="o" />
 
         <EditText
@@ -53,6 +55,7 @@
             android:fontFamily="@font/lexend_semibold"
             android:inputType="phone"
             android:lines="1"
+            android:textSize="20sp"
             android:maxLines="1"
             tools:ignore="LabelFor"
             tools:text="12 123 1234" />

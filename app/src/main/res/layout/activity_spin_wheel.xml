@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".SpinWheelActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textSize="19sp"
+        android:textColor="@color/black"
+        android:text="Spin the wheel by spending 500 Tala Coins and earn rewards."
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginTop="30dp"/>
+
     <com.bluehomestudio.luckywheel.LuckyWheel
         android:id="@+id/lucky_wheel"
         android:layout_width="wrap_content"
@@ -22,11 +32,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/rounded"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:textSize="15dp"
-        android:text="START"/>
+        android:background="@drawable/rounded"
+        android:text="Spin and Win"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="15dp" />
 
 </RelativeLayout>

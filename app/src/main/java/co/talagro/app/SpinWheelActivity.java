@@ -50,7 +50,7 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spin_wheel);
-        getSupportActionBar().setTitle("Lucky Wheel!");
+        getSupportActionBar().setTitle("Lucky Wheel");
 
         generateWheelItems();
 
@@ -142,7 +142,7 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
         builder.setMessage(message);
 
         builder.setPositiveButton("Yay", (dialogInterface, i) -> {
-            dialogInterface.dismiss(); // Dismiss the dialog
+            dialogInterface.dismiss();
         });
 
         android.app.AlertDialog dialog = builder.create();
