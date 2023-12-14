@@ -7,7 +7,13 @@ import static co.talagro.app.util.Const.TALA_GRO_BACKEND_URL;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +21,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bluehomestudio.luckywheel.LuckyWheel;
 import com.bluehomestudio.luckywheel.WheelItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import co.talagro.app.R;
@@ -86,22 +94,30 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
-//        // Get the MenuItem by its ID
-//        MenuItem coinsMenuItem = menu.findItem(R.id.your_coins);
-//
-//        // Set the available coins count
-//        Intent intent = getIntent();
-//        String coinBalance = String.valueOf(intent.getIntExtra(COIN_BALANCE, 0));
-//        ((TextView) findViewById(R.id.your_coins)).setText(coinBalance);
-//        coinsMenuItem.setTitle(coinBalance);
-
         return true;
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem coinsMenuItem = menu.findItem(R.id.your_coins);
+        if (coinsMenuItem != null) {
+            Intent intent = getIntent();
+            int coinBalance = intent.getIntExtra("COIN_BALANCE", 0);
+            String coins = String.valueOf(coinBalance);
+            String coinBalanceText = coinBalance + " coins";
+            SpannableString spannableString = new SpannableString(coinBalanceText.toLowerCase(Locale.US));
+            spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, coinBalanceText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new RelativeSizeSpan(1.2f), 0, coinBalanceText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ForegroundColorSpan(ContextCompat.getColor(this, android.R.color.white)),
+                    0, coinBalanceText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);coinsMenuItem.setTitle(coins + " coins");
+            coinsMenuItem.setTitle(spannableString);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.your_consistent_item || item.getItemId() == R.id.your_coins) {
+        if (item.getItemId() == R.id.your_coins) {
             return true;
         }
         return super.onOptionsItemSelected(item);
