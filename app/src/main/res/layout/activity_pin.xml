@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".PinActivity">
+    tools:context=".activity.PinActivity">
 
     <TextView
         android:id="@+id/content_title"

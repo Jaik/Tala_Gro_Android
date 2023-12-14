@@ -13,22 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tala_Gro_Android"
         tools:targetApi="31">
-        <activity android:name=".SpinWheelActivity"
+        <activity android:name=".activity.SpinWheelActivity"
             android:exported="false" />
         <activity
-            android:name=".CoinsActivity"
+            android:name=".activity.CoinsActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".PinActivity"
+            android:name=".activity.PinActivity"
             android:exported="false" />
         <activity
-            android:name=".BrandCouponsActivity"
+            android:name=".activity.BrandCouponsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

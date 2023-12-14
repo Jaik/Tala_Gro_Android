@@ -1,8 +1,8 @@
-package co.talagro.app;
+package co.talagro.app.activity;
 
-import static co.talagro.app.Const.COINS_PAGE_REQUEST_CODE;
-import static co.talagro.app.Const.COIN_BALANCE;
-import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
+import static co.talagro.app.util.Const.COINS_PAGE_REQUEST_CODE;
+import static co.talagro.app.util.Const.COIN_BALANCE;
+import static co.talagro.app.util.Const.TALA_GRO_BACKEND_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -18,6 +18,9 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
+import co.talagro.app.R;
+import co.talagro.app.util.State;
+import co.talagro.app.util.StateTransitionManager;
 import co.talagro.app.retrofit.RewardServiceCallBack;
 import co.talagro.app.retrofit.UserServiceCallBack;
 import co.talagro.app.retrofit.request.UserUpdateRequest;

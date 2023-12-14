@@ -1,9 +1,11 @@
-package co.talagro.app;
+package co.talagro.app.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import co.talagro.app.R;
 
 public class MainActivity extends AppCompatActivity {
 

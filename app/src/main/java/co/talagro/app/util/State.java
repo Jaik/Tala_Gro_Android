@@ -1,4 +1,4 @@
-package co.talagro.app;
+package co.talagro.app.util;
 
 public enum State {
     LOAN_APPLICATION,

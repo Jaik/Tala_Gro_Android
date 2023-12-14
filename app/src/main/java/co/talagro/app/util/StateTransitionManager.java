@@ -1,4 +1,4 @@
-package co.talagro.app;
+package co.talagro.app.util;
 
 public class StateTransitionManager {
 
@@ -13,5 +13,4 @@ public class StateTransitionManager {
         currentState = state;
         //TODO; persist these values
     }
-
 }

@@ -1,5 +1,6 @@
 package co.talagro.app.retrofit.request;
 
+
 public class UserUpdateRequest {
 
     public int coins;

@@ -1,4 +1,4 @@
-package co.talagro.app;
+package co.talagro.app.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.chaos.view.PinView;
+
+import co.talagro.app.R;
 
 
 public class PinActivity extends AppCompatActivity {

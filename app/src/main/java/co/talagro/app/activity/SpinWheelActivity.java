@@ -1,15 +1,15 @@
-package co.talagro.app;
+package co.talagro.app.activity;
 
-import static co.talagro.app.Const.COIN_BALANCE;
-import static co.talagro.app.Const.REDEEM_CARD_RESULT_CODE;
-import static co.talagro.app.Const.SPIN_WHEEL_RESULT_CODE;
-import static co.talagro.app.Const.TALA_GRO_BACKEND_URL;
+import static co.talagro.app.util.Const.COIN_BALANCE;
+import static co.talagro.app.util.Const.SPIN_WHEEL_RESULT_CODE;
+import static co.talagro.app.util.Const.TALA_GRO_BACKEND_URL;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import co.talagro.app.R;
 import co.talagro.app.retrofit.UserServiceCallBack;
 import co.talagro.app.retrofit.request.UserUpdateRequest;
 import co.talagro.app.retrofit.response.UserResponse;
@@ -51,6 +52,7 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spin_wheel);
         getSupportActionBar().setTitle("Lucky Wheel");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         generateWheelItems();
 
@@ -75,6 +77,15 @@ public class SpinWheelActivity extends AppCompatActivity implements UserServiceC
             selectedTarget = rand.nextInt((max - min) + 1) + min;
             luckyWheel.rotateWheelTo(selectedTarget);
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void generateWheelItems() {

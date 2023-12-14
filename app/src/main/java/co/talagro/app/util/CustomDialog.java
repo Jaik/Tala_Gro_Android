@@ -1,12 +1,13 @@
-package co.talagro.app;
+package co.talagro.app.util;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import co.talagro.app.R;
 
 
 public class CustomDialog {
@@ -21,14 +22,11 @@ public class CustomDialog {
 
         contentTextView.setText(content);
 
-        copyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Copy the content to the clipboard
-                copyToClipboard(context, content);
-                // Dismiss the dialog
-                dialog.dismiss();
-            }
+        copyButton.setOnClickListener(v -> {
+            // Copy the content to the clipboard
+            copyToClipboard(context, content);
+            // Dismiss the dialog
+            dialog.dismiss();
         });
 
         dialog.show();
